@@ -20,7 +20,7 @@ export class ProductsService {
     newProduct.name = createProductDto.name;
     newProduct.description = createProductDto.description;
     newProduct.price = createProductDto.price;
-    newProduct.imageUrl = '/uploads/' + file.filename;
+    newProduct.imageUrl = 'https://keywisebackend.onrender.com' + '/uploads/' + file.filename;
     newProduct.category = createProductDto.category;
     newProduct.seller = createProductDto.seller;
     newProduct.email = createProductDto.email;
