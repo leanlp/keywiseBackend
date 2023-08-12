@@ -9,6 +9,8 @@ import { multerConfig } from "../multer.config"
 import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { SmartwalletController } from './smartwallet/smartwallet.controller';
+import { SmartwalletService } from './smartwallet/smartwallet.service';
 
 
 
@@ -29,7 +31,7 @@ import { join } from 'path';
     ProductsModule,
     AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, SmartwalletController],
+  providers: [AppService, SmartwalletService],
 })
 export class AppModule {}
