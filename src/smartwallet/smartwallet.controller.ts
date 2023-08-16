@@ -6,13 +6,26 @@ import { SmartwalletService } from "../smartwallet/smartwallet.service";
 
 @Controller('smartwallet')
 export class SmartwalletController {
-  constructor(private readonly smartwalletService: SmartwalletService) {} // Note the corrected capitalization
+  constructor(private readonly smartwalletService: SmartwalletService) {} 
 
   @Post('run')
   async runHardhatScript(
     @Body('param1') param1: string,
     ): Promise<string> {
     
-    return await this.smartwalletService.runScript(param1);
+      const walletAddress = await this.smartwalletService.runScript(param1);
+      console.log(walletAddress)
+
+
+
+
+
+
+
+    return await this.smartwalletService.runScript(param1)  } catch (error: { message: any; }) {
+      
+      throw new Error(`Failed to run scripts: ${error.message}`);
+  };
+
   }
-}
+
