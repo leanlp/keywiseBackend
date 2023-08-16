@@ -2,6 +2,7 @@ import { Injectable, Response } from '@nestjs/common';
 import { exec } from 'child_process';
 
 
+
 @Injectable()
 export class SmartwalletService {
     runScript(param1: string): Promise<string> {
@@ -19,17 +20,18 @@ export class SmartwalletService {
 
             const walletAddress = stdout.trim();
             console.log("wallet", walletAddress);
-
+            setTimeout(() => {
             this.executeSendUserOPScript(walletAddress)
               .then(result => resolve(result))
               .catch(err => reject(err));
+            }, 10000);
           });
         });
     }
 
-    executeSendUserOPScript(walletAddress: string): Promise<string> {
+    executeSendUserOPScript(walletAddress: any): Promise<string> {
       return new Promise((resolve, reject) => {
-        const command = `npx hardhat run --network matic scripts/sendUserOPPaymasterKeywise.cjs`;
+        const command = `node scripts/sendUserOPPaymasterKeywise.cjs ${walletAddress}`;
         const options = {
           cwd: '/home/oem/JOBS/keywise/enviormentKeywiseSendUserOp'
         };
