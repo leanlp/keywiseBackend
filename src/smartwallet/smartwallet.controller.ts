@@ -20,4 +20,3 @@ async runHardhatScript(@Body('param1') param1: string): Promise<any> {
 }
 
   }
-

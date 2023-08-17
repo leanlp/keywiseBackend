@@ -11,7 +11,7 @@ export class SmartwalletService {
           const options = {
             cwd: '/home/oem/JOBS/keywise/enviormentKeywiseSendUserOp'
           };
-
+console.log(param1)
           exec(command, options, async (error, stdout, stderr) => {
             if (error) {
               reject(`exec error: ${error}`);
