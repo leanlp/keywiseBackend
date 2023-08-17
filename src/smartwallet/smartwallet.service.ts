@@ -18,10 +18,11 @@ export class SmartwalletService {
               return;
             }
 
-            const walletAddress = stdout.trim();
-            console.log("wallet", walletAddress);
+            const extractedWalletAddress = stdout.replace("Received Wallet Address: ", "").trim();
+            console.log("Extracted wallet address:", extractedWalletAddress);
+            resolve(extractedWalletAddress);
             setTimeout(() => {
-            this.executeSendUserOPScript(walletAddress)
+            this.executeSendUserOPScript(extractedWalletAddress)
               .then(result => resolve(result))
               .catch(err => reject(err));
             }, 10000);
@@ -29,9 +30,9 @@ export class SmartwalletService {
         });
     }
 
-    executeSendUserOPScript(walletAddress: any): Promise<string> {
+    executeSendUserOPScript(extractedWalletAddress: any): Promise<string> {
       return new Promise((resolve, reject) => {
-        const command = `node scripts/sendUserOPPaymasterKeywise.cjs ${walletAddress}`;
+        const command = `node scripts/sendUserOPPaymasterKeywise.cjs ${extractedWalletAddress}`;
         const options = {
           cwd: '/home/oem/JOBS/keywise/enviormentKeywiseSendUserOp'
         };

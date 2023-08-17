@@ -11,6 +11,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { SmartwalletController } from './smartwallet/smartwallet.controller';
 import { SmartwalletService } from './smartwallet/smartwallet.service';
+import { SenduseropController } from './senduserop/senduserop.controller';
+import { SenduseropService } from './senduserop/senduserop.service';
 
 
 
@@ -31,7 +33,7 @@ import { SmartwalletService } from './smartwallet/smartwallet.service';
     ProductsModule,
     AuthModule,
   ],
-  controllers: [AppController, SmartwalletController],
-  providers: [AppService, SmartwalletService],
+  controllers: [AppController, SmartwalletController, SenduseropController],
+  providers: [AppService, SmartwalletService, SenduseropService],
 })
 export class AppModule {}
